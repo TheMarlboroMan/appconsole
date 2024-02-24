@@ -1,0 +1,6 @@
+set(SOURCE
+	${SOURCE}
+	${CMAKE_CURRENT_SOURCE_DIR}/console.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/lib.cpp
+	PARENT_SCOPE
+)
