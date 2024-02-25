@@ -8,6 +8,7 @@
 #include <ldi/sdl_input.h>
 #include <functional>
 #include <sstream>
+#include <string>
 
 namespace appconsole {
 
@@ -39,6 +40,7 @@ class console {
 	long                    output_stream_position{0};
 	unsigned                w, h;
 	int                     enter_input;
+	std::string             current_command;
 
 };
 }
