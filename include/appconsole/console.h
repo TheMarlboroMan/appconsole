@@ -25,6 +25,9 @@ class console {
 	void                    input(ldi::sdl_input&);
 
 	console&                set_position(ldv::point);
+/**
+ * sets the width of the background, input and output texts
+ */
 	console&                set_width(unsigned);
 	console&                set_height(unsigned);
 	console&                set_background_color(ldv::rgba_color);
@@ -33,9 +36,9 @@ class console {
 	private:
 
 	std::function<void(const std::string&)> onenter;
-	ldv::box_representation rect;
-	ldv::ttf_representation input_view,
-	                        output_view;
+	ldv::box_representation rect; //the background box for the whole thing.
+	ldv::ttf_representation input_view, //the line input view.
+	                        output_view; //the result output view.
 	std::ostringstream      output_stream;
 	long                    output_stream_position{0};
 	unsigned                w, h;

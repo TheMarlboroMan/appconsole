@@ -1,4 +1,5 @@
 #include <appconsole/console.h>
+#include <iostream>
 
 using namespace appconsole;
 
@@ -16,8 +17,13 @@ console::console(
 {
 
 	rect.set_blend(ldv::representation::blends::alpha);
+
+//TODO: More options...
 	input_view.set_blend(ldv::representation::blends::alpha);
 	output_view.set_blend(ldv::representation::blends::alpha);
+
+	input_view.set_max_width(w);
+	output_view.set_max_width(w);
 }
 
 void console::draw(
@@ -119,6 +125,8 @@ console& console::set_width(
 
 	w=_w;
 	rect.set_dimensions(w, h);
+	input_view.set_max_width(w);
+	output_view.set_max_width(w);
 	return *this;
 }
 
