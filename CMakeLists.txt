@@ -37,7 +37,7 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-add_compile_options( -Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Wshadow -Woverloaded-virtual -Wno-deprecated -ansi -pedantic -fno-rtti)
+add_compile_options( -Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Wshadow -Woverloaded-virtual -Wno-deprecated -pedantic -fno-rtti)
 
 include_directories("${CMAKE_CURRENT_LIST_DIR}/include")
 
@@ -88,7 +88,8 @@ endif()
 
 IF(WIN32)
 
-	include_directories(../log/libdansdl2)
+	include_directories(../libdansdl2/include)
+	include_directories(../log/include)
 
 	if(${BUILD_SHARED})
 		target_compile_definitions(appconsole_shared PUBLIC -DWINBUILD)
