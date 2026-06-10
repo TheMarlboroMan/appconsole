@@ -93,6 +93,29 @@ IF(WIN32)
 
 	if(${BUILD_SHARED})
 		target_compile_definitions(appconsole_shared PUBLIC -DWINBUILD)
+
+		set(IMPORTED_LIB_POSTFIX "")
+		if(${BUILD_DEBUG})
+
+			set(IMPORTED_LIB_POSTFIX "_debug")
+		endif()
+
+		#in windows we cannot allow unresolved symbols...
+		add_library(lm SHARED IMPORTED)
+		set_target_properties(lm PROPERTIES 
+			IMPORTED_IMPLIB "../../log/build/liblm${IMPORTED_LIB_POSTFIX}.dll.a"
+			IMPORTED_LOCATION "../../log/build/liblm${IMPORTED_LIB_POSTFIX}.dll"
+		)
+
+		add_library(dansdl2 SHARED IMPORTED)
+		set_target_properties(dansdl2 PROPERTIES 
+			IMPORTED_IMPLIB "../../libdansdl2/build/libdansdl2${IMPORTED_LIB_POSTFIX}.dll.a"
+			IMPORTED_LOCATION "../../libdansdl2/build/libdansdl2${IMPORTED_LIB_POSTFIX}.dll"
+		)
+
+		target_link_libraries(appconsole_shared PRIVATE lm)
+		target_link_libraries(appconsole_shared PRIVATE dansdl2)
+
 	endif()
 	if(${BUILD_STATIC})
 		target_compile_definitions(appconsole_static PUBLIC -DWINBUILD)
