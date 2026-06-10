@@ -86,5 +86,17 @@ if(${BUILD_SHARED})
 	message("will build ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}-${RELEASE_VERSION}-shared")
 endif()
 
+IF(WIN32)
+
+	include_directories(../log/libdansdl2)
+
+	if(${BUILD_SHARED})
+		target_compile_definitions(appconsole_shared PUBLIC -DWINBUILD)
+	endif()
+	if(${BUILD_STATIC})
+		target_compile_definitions(appconsole_static PUBLIC -DWINBUILD)
+	endif()
+ENDIF()
+
 set(INSTALL_DIR "include/")
 install(DIRECTORY include/ DESTINATION ${INSTALL_DIR} FILES_MATCHING PATTERN "*.h")
